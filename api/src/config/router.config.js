@@ -9,6 +9,7 @@ import searchRouter from "../modules/search/search.router.js";
 import bookmarkRouter from "../modules/bookmark/bookmark.router.js";
 import dashboardRouter from "../modules/dashboard/dashboard.router.js";
 import accessRequestRouter from "../modules/access-request/access-request.router.js";
+import notificationRouter from "../modules/notification/notification.router.js";
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.use("/search", searchRouter);
 router.use("/bookmarks", bookmarkRouter);
 router.use("/dashboard", dashboardRouter);
 router.use("/access-requests", accessRequestRouter);
+router.use("/notifications", notificationRouter);
 
 
 export default router;

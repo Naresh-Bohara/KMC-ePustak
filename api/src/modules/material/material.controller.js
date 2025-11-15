@@ -1,6 +1,7 @@
 import materialSvc from "./material.service.js";
 import FileUploadService from "../../services/cloudinary.service.js";
 import HttpResponse from "../../constants/response-status.contants.js";
+import notificationCtrl from "../notification/notification.controller.js";
 
 
 class MaterialController {
@@ -217,6 +218,11 @@ class MaterialController {
                 req.params.id, 
                 req.body, 
                 req.loggedInUser._id
+            );
+            
+            
+            await notificationCtrl.createMaterialNotification(
+                material, `material_${req.body.status}`, material.uploadedBy._id
             );
             
             res.json({
