@@ -21,7 +21,6 @@ class FileUploadService {
                 overwrite: false
             });
 
-            // Clean up temporary file
             this.cleanupFile(filePath);
 
             return {
@@ -40,12 +39,9 @@ class FileUploadService {
 
     static async uploadMaterial(filePath, faculty, course, materialType) {
         try {
-            // Create organized folder structure
             const folderPath = `kmc-epustak/materials/${faculty}/${course}/${materialType}`;
-            
             const result = await this.uploadFile(filePath, folderPath);
             return result;
-
         } catch (exception) {
             throw exception;
         }
@@ -56,7 +52,6 @@ class FileUploadService {
             const folderPath = `kmc-epustak/users/${userId}`;
             const result = await this.uploadFile(filePath, folderPath);
             return result;
-
         } catch (exception) {
             throw exception;
         }
@@ -67,7 +62,6 @@ class FileUploadService {
             const folderPath = `kmc-epustak/courses/${courseId}`;
             const result = await this.uploadFile(filePath, folderPath);
             return result;
-
         } catch (exception) {
             throw exception;
         }
@@ -95,8 +89,6 @@ class FileUploadService {
         try {
             if (fs.existsSync(filePath)) {
                 fs.unlinkSync(filePath);
-                
-                // Also clean up empty parent directories
                 const tempDir = path.dirname(filePath);
                 const files = fs.readdirSync(tempDir);
                 if (files.length === 0) {

@@ -121,7 +121,24 @@ const UserSchema = new mongoose.Schema({
     loginCount: {
         type: Number,
         default: 0
-    }
+    },
+
+    // ADD THIS NEW FIELD FOR PRIVATE MATERIAL ACCESS
+    accessedMaterials: [{
+        materialId: {
+            type: mongoose.Types.ObjectId,
+            ref: "StudyMaterial",
+            required: true
+        },
+        accessedAt: {
+            type: Date,
+            default: Date.now
+        },
+        accessCode: {
+            type: String,
+            required: true
+        }
+    }]
 
 }, {
     timestamps: true,
@@ -134,6 +151,7 @@ UserSchema.index({ email: 1 });
 UserSchema.index({ role: 1 });
 UserSchema.index({ 'studentProfile.faculty': 1 });
 UserSchema.index({ 'teacherProfile.isVerified': 1 });
+UserSchema.index({ 'accessedMaterials.materialId': 1 }); 
 
 const UserModel = mongoose.model("User", UserSchema);
 export default UserModel;
