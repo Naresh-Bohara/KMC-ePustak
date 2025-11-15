@@ -69,7 +69,6 @@ const CourseSchema = new mongoose.Schema({
 });
 
 // Index for better performance
-CourseSchema.index({ code: 1 });
 CourseSchema.index({ faculty: 1 });
 CourseSchema.index({ semester: 1 });
 CourseSchema.index({ academicYear: 1 });

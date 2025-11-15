@@ -51,7 +51,6 @@ const FacultySchema = new mongoose.Schema({
 });
 
 // Index for better performance
-FacultySchema.index({ code: 1 });
 FacultySchema.index({ status: 1 });
 
 const FacultyModel = mongoose.model("Faculty", FacultySchema);
