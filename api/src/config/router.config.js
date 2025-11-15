@@ -7,6 +7,7 @@ import courseRouter from "../modules/course/course.router.js";
 import materialRouter from "../modules/material/material.router.js";
 import searchRouter from "../modules/search/search.router.js";
 import bookmarkRouter from "../modules/bookmark/bookmark.router.js";
+import dashboardRouter from "../modules/dashboard/dashboard.router.js";
 const router = Router();
 
 router.use("/auth", authRouter);
@@ -15,6 +16,7 @@ router.use("/courses", courseRouter);
 router.use("/materials", materialRouter);
 router.use("/search", searchRouter);
 router.use("/bookmarks", bookmarkRouter);
+router.use("/dashboard", dashboardRouter);
 
 
 export default router;
