@@ -147,7 +147,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Index for better query performance
-UserSchema.index({ email: 1 });
+
 UserSchema.index({ role: 1 });
 UserSchema.index({ 'studentProfile.faculty': 1 });
 UserSchema.index({ 'teacherProfile.isVerified': 1 });
