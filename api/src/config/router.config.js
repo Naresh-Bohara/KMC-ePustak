@@ -10,6 +10,7 @@ import bookmarkRouter from "../modules/bookmark/bookmark.router.js";
 import dashboardRouter from "../modules/dashboard/dashboard.router.js";
 import accessRequestRouter from "../modules/access-request/access-request.router.js";
 import notificationRouter from "../modules/notification/notification.router.js";
+import adminRouter from "../modules/admin/admin.router.js";
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.use("/bookmarks", bookmarkRouter);
 router.use("/dashboard", dashboardRouter);
 router.use("/access-requests", accessRequestRouter);
 router.use("/notifications", notificationRouter);
+router.use("/admin", adminRouter);
 
 
 export default router;
