@@ -101,25 +101,38 @@ class MaterialController {
         }
     };
 
-    validateAccess = async (req, res, next) => {
-        try {
-            const result = await materialSvc.validateAccess(
-                req.params.id, 
-                req.body.accessCode, 
+   validateAccess = async (req, res, next) => {
+    try {
+        const result = await materialSvc.validateAccess(
+            req.params.id, 
+            req.body.accessCode, 
+            req.loggedInUser._id
+        );
+        
+        //  Notify user when access granted
+        if (result.hasAccess && result.material) {
+            await notificationCtrl.createAccessNotification(
+                {
+                    _id: req.params.id,
+                    materialId: req.params.id,
+                    materialTitle: result.material.title
+                },
+                'access_approved',
                 req.loggedInUser._id
             );
-            
-            res.json({
-                data: result,
-                message: result.message,
-                status: HttpResponse.success,
-                options: null
-            });
-            
-        } catch (exception) {
-            next(exception);
         }
-    };
+        
+        res.json({
+            data: result,
+            message: result.message,
+            status: HttpResponse.success,
+            options: null
+        });
+        
+    } catch (exception) {
+        next(exception);
+    }
+};
 
     downloadMaterial = async (req, res, next) => {
         try {
